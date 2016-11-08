@@ -1,13 +1,12 @@
 from unittest.case import TestCase
 from bson.objectid import ObjectId
 from mock.mock import Mock, patch
-from core_oaipmh_common_app.components.oai_set.api import get_by_id, get_all, get_by_set_spec
+import core_oaipmh_common_app.components.oai_set.api as set_api
 from core_main_app.commons.exceptions import MDCSError
 from core_oaipmh_common_app.components.oai_set.models import OaiSet
 
 
-class TestOaiSetGet(TestCase):
-
+class TestOaiSetGetById(TestCase):
     @patch('core_oaipmh_common_app.components.oai_set.models.OaiSet.get_by_id')
     def test_oai_set_get_by_id_return_object(self, mock_get_by_id):
         # Arrange
@@ -16,7 +15,7 @@ class TestOaiSetGet(TestCase):
         mock_get_by_id.return_value = mock_oai_set
 
         # Act
-        result = get_by_id(mock_get_by_id.id)
+        result = set_api.get_by_id(mock_get_by_id.id)
 
         # Assert
         self.assertIsInstance(result, OaiSet)
@@ -30,8 +29,23 @@ class TestOaiSetGet(TestCase):
 
         # Act + Assert
         with self.assertRaises(MDCSError):
-            get_by_id(mock_absent_id)
+            set_api.get_by_id(mock_absent_id)
 
+
+class TestOaiSetDeleteById(TestCase):
+    @patch('core_oaipmh_common_app.components.oai_set.models.OaiSet.delete_by_id')
+    def test_oai_set_delete_by_id_throws_exception_if_object_does_not_exist(self, mock_delete_by_id):
+        # Arrange
+        mock_absent_id = ObjectId()
+
+        mock_delete_by_id.side_effect = Exception()
+
+        # Act + Assert
+        with self.assertRaises(MDCSError):
+            set_api.delete_by_id(mock_absent_id)
+
+
+class TestOaiSetGetBySetSpec(TestCase):
     @patch('core_oaipmh_common_app.components.oai_set.models.OaiSet.get_by_set_spec')
     def test_oai_set_get_by_set_spec_return_object(self, mock_get_by_set_spec):
         # Arrange
@@ -40,7 +54,7 @@ class TestOaiSetGet(TestCase):
         mock_get_by_set_spec.return_value = mock_oai_set
 
         # Act
-        result = get_by_set_spec(mock_get_by_set_spec.setSpec)
+        result = set_api.get_by_set_spec(mock_get_by_set_spec.setSpec)
 
         # Assert
         self.assertIsInstance(result, OaiSet)
@@ -54,12 +68,12 @@ class TestOaiSetGet(TestCase):
 
         # Act + Assert
         with self.assertRaises(MDCSError):
-            get_by_id(mock_absent_set_spec)
+            set_api.get_by_id(mock_absent_set_spec)
 
 
-class TestOaiSetList(TestCase):
+class TestOaiSetGetAll(TestCase):
     @patch('core_oaipmh_common_app.components.oai_set.models.OaiSet.get_all')
-    def test_oai_set_list_contains_only_oai_set(self, mock_get_all):
+    def test_oai_set_get_all_contains_only_oai_set(self, mock_get_all):
         # Arrange
         mock_oai_set1 = _get_oai_set_mock()
         mock_oai_set2 = _get_oai_set_mock()
@@ -67,7 +81,7 @@ class TestOaiSetList(TestCase):
         mock_get_all.return_value = [mock_oai_set1, mock_oai_set2]
 
         # Act
-        result = get_all()
+        result = set_api.get_all()
 
         # Assert
         self.assertTrue(all(isinstance(item, OaiSet) for item in result))

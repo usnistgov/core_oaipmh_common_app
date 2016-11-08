@@ -18,6 +18,18 @@ def get_by_id(oai_set_id):
         raise MDCSError('No OaiSet could be found with the given id')
 
 
+def delete_by_id(oai_set_id):
+    """
+    Delete an OaiSet by its id
+    :param oai_set_id:
+    :return:
+    """
+    try:
+        return OaiSet.delete_by_id(oai_set_id)
+    except:
+        raise MDCSError('No OaiSet could be found with the given id')
+
+
 def get_by_set_spec(set_spec):
     """
     Get an OaiSet by its setSpec
