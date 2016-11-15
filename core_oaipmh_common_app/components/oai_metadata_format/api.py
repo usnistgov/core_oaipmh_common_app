@@ -44,7 +44,4 @@ def get_all_by_list_ids(list_oai_metadata_format_ids):
     :param list_oai_metadata_format_ids:
     :return:
     """
-    try:
-        return OaiMetadataFormat.get_all_by_list_ids(list_oai_metadata_format_ids)
-    except:
-        raise exceptions.ApiError('No OaiMetadataFormat could be found with the given list of ids')
+    return OaiMetadataFormat.get_all_by_list_ids(list_oai_metadata_format_ids)

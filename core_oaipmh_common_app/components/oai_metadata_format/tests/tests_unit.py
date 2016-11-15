@@ -90,17 +90,6 @@ class TestOaiMetadataFormatGetAllByListIds(TestCase):
         # Assert
         self.assertTrue(all(isinstance(item, OaiMetadataFormat) for item in result))
 
-    @patch('core_oaipmh_common_app.components.oai_metadata_format.models.OaiMetadataFormat.get_all_by_list_ids')
-    def test_oai_metadata_format_get_all_by_list_ids_throws_exception_if_object_does_not_exist(self, mock_get_all):
-        # Arrange
-        list_ids = [ObjectId(), ObjectId()]
-
-        mock_get_all.side_effect = Exception()
-
-        # Act + Assert
-        with self.assertRaises(exceptions.ApiError):
-            metadata_format_api.get_all_by_list_ids(list_ids)
-
 
 def _create_mock_oai_metadata_format():
     """

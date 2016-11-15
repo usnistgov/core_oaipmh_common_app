@@ -37,3 +37,12 @@ class OaiSet(Document):
         :return:
         """
         return OaiSet.objects().all()
+
+    @staticmethod
+    def get_all_by_list_ids(list_oai_set_ids):
+        """
+        Get all OaiSet by a list of ids
+        :param list_oai_set_ids:
+        :return:
+        """
+        return OaiSet.objects(pk__in=list_oai_set_ids).all()

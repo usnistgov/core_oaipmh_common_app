@@ -36,3 +36,12 @@ def get_all():
     :return:
     """
     return OaiSet.get_all()
+
+
+def get_all_by_list_ids(list_oai_set_ids):
+    """
+    Get all OaiSet by a list of ids
+    :param list_oai_set_ids:
+    :return:
+    """
+    return OaiSet.get_all_by_list_ids(list_oai_set_ids)

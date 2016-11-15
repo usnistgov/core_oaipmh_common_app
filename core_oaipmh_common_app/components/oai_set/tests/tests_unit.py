@@ -74,6 +74,23 @@ class TestOaiSetGetAll(TestCase):
         self.assertTrue(all(isinstance(item, OaiSet) for item in result))
 
 
+class TestOaiSetGetAllByListIds(TestCase):
+    @patch('core_oaipmh_common_app.components.oai_set.models.OaiSet.get_all_by_list_ids')
+    def test_oai_set_get_all_by_list_ids_contains_only_oai_metadata_format(self, mock_get_all):
+        # Arrange
+        mock_oai_set1 = _create_mock_oai_set()
+        mock_oai_set2 = _create_mock_oai_set()
+        list_ids = [ObjectId(), ObjectId()]
+
+        mock_get_all.return_value = [mock_oai_set1, mock_oai_set2]
+
+        # Act
+        result = set_api.get_all_by_list_ids(list_ids)
+
+        # Assert
+        self.assertTrue(all(isinstance(item, OaiSet) for item in result))
+
+
 def _create_mock_oai_set():
     """
     Mock an OaiSet object
