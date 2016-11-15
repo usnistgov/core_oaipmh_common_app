@@ -22,15 +22,6 @@ class OaiSet(Document):
         return OaiSet.objects().get(pk=str(oai_set_id))
 
     @staticmethod
-    def delete_by_id(oai_set_id):
-        """
-        Delete an OaiSet by its id
-        :param:
-        :return:
-        """
-        OaiSet.get_by_id(oai_set_id).delete()
-
-    @staticmethod
     def get_by_set_spec(set_spec):
         """
         Get an OaiSet by its setSpec
