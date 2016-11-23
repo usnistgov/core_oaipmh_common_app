@@ -7,7 +7,7 @@ from core_oaipmh_common_app.components.oai_set.models import OaiSet
 
 
 class TestOaiSetGetById(TestCase):
-    @patch('core_oaipmh_common_app.components.oai_set.models.OaiSet.get_by_id')
+    @patch.object(OaiSet, 'get_by_id')
     def test_oai_set_get_by_id_return_object(self, mock_get_by_id):
         # Arrange
         mock_oai_set = _create_mock_oai_set()
@@ -20,20 +20,31 @@ class TestOaiSetGetById(TestCase):
         # Assert
         self.assertIsInstance(result, OaiSet)
 
-    @patch('core_oaipmh_common_app.components.oai_set.models.OaiSet.get_by_id')
-    def test_oai_set_get_by_id_throws_exception_if_object_does_not_exist(self, mock_get_by_id):
+    @patch.object(OaiSet, 'get_by_id')
+    def test_oai_set_get_by_id_raises_exception_if_object_does_not_exist(self, mock_get_by_id):
         # Arrange
         mock_absent_id = ObjectId()
 
-        mock_get_by_id.side_effect = Exception()
+        mock_get_by_id.side_effect = exceptions.DoesNotExist("Error")
 
         # Act + Assert
-        with self.assertRaises(exceptions.ApiError):
+        with self.assertRaises(exceptions.DoesNotExist):
+            set_api.get_by_id(mock_absent_id)
+
+    @patch.object(OaiSet, 'get_by_id')
+    def test_oai_set_get_by_id_raises_exception_if_internal_error(self, mock_get_by_id):
+        # Arrange
+        mock_absent_id = ObjectId()
+
+        mock_get_by_id.side_effect = exceptions.ModelError("Error")
+
+        # Act + Assert
+        with self.assertRaises(exceptions.ModelError):
             set_api.get_by_id(mock_absent_id)
 
 
 class TestOaiSetGetBySetSpec(TestCase):
-    @patch('core_oaipmh_common_app.components.oai_set.models.OaiSet.get_by_set_spec')
+    @patch.object(OaiSet, 'get_by_set_spec')
     def test_oai_set_get_by_set_spec_return_object(self, mock_get_by_set_spec):
         # Arrange
         mock_oai_set = _create_mock_oai_set()
@@ -46,20 +57,31 @@ class TestOaiSetGetBySetSpec(TestCase):
         # Assert
         self.assertIsInstance(result, OaiSet)
 
-    @patch('core_oaipmh_common_app.components.oai_set.models.OaiSet.get_by_set_spec')
-    def test_oai_set_get_by_set_spec_throws_exception_if_object_does_not_exist(self, mock_get_by_set_spec):
+    @patch.object(OaiSet, 'get_by_set_spec')
+    def test_oai_set_get_by_set_spec_raises_exception_if_object_does_not_exist(self, mock_get_by_set_spec):
         # Arrange
         mock_absent_set_spec = "oai_test"
 
-        mock_get_by_set_spec.side_effect = Exception()
+        mock_get_by_set_spec.side_effect = exceptions.DoesNotExist("Error.")
 
         # Act + Assert
-        with self.assertRaises(exceptions.ApiError):
-            set_api.get_by_id(mock_absent_set_spec)
+        with self.assertRaises(exceptions.DoesNotExist):
+            set_api.get_by_set_spec(mock_absent_set_spec)
+
+    @patch.object(OaiSet, 'get_by_set_spec')
+    def test_oai_set_get_by_set_spec_raises_exception_if_internal_error(self, mock_get_by_set_spec):
+        # Arrange
+        mock_absent_set_spec = "oai_test"
+
+        mock_get_by_set_spec.side_effect = exceptions.ModelError("Error.")
+
+        # Act + Assert
+        with self.assertRaises(exceptions.ModelError):
+            set_api.get_by_set_spec(mock_absent_set_spec)
 
 
 class TestOaiSetGetAll(TestCase):
-    @patch('core_oaipmh_common_app.components.oai_set.models.OaiSet.get_all')
+    @patch.object(OaiSet, 'get_all')
     def test_oai_set_get_all_contains_only_oai_set(self, mock_get_all):
         # Arrange
         mock_oai_set1 = _create_mock_oai_set()
@@ -75,7 +97,7 @@ class TestOaiSetGetAll(TestCase):
 
 
 class TestOaiSetGetAllByListIds(TestCase):
-    @patch('core_oaipmh_common_app.components.oai_set.models.OaiSet.get_all_by_list_ids')
+    @patch.object(OaiSet, 'get_all_by_list_ids')
     def test_oai_set_get_all_by_list_ids_contains_only_oai_metadata_format(self, mock_get_all):
         # Arrange
         mock_oai_set1 = _create_mock_oai_set()
@@ -92,13 +114,15 @@ class TestOaiSetGetAllByListIds(TestCase):
 
 
 def _create_mock_oai_set():
-    """
-    Mock an OaiSet object
-    :return:
+    """ Mock an OaiSet.
+
+    Returns:
+        OaiSet mock.
+
     """
     mock_oai_set = Mock(spec=OaiSet)
-    mock_oai_set.setSpec = "oai_test"
-    mock_oai_set.setName = "test"
+    mock_oai_set.set_spec = "oai_test"
+    mock_oai_set.set_name = "test"
     mock_oai_set.id = ObjectId()
 
     return mock_oai_set

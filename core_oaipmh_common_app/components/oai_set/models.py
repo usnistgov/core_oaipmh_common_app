@@ -3,46 +3,75 @@ OaiSet model
 """
 
 from django_mongoengine import fields, Document
+from mongoengine import errors as mongoengine_errors
+from core_main_app.commons import exceptions
 
 
 class OaiSet(Document):
     """Represents a set for Oai-Pmh"""
-    setSpec = fields.StringField(unique=True)
-    setName = fields.StringField(unique=True)
+    set_spec = fields.StringField(unique=True)
+    set_name = fields.StringField(unique=True)
 
     meta = {'allow_inheritance': True}
 
     @staticmethod
     def get_by_id(oai_set_id):
+        """ Get an OaiSet by its id.
+
+        Args:
+            oai_set_id: OaiSet id.
+
+        Returns: The OaiSet instance.
+
+        Raises:
+            DoesNotExist: The set doesn't exist
+            ModelError: Internal error during the process
+
         """
-        Get an OaiSet by its id
-        :param oai_set_id:
-        :return:
-        """
-        return OaiSet.objects().get(pk=str(oai_set_id))
+        try:
+            return OaiSet.objects().get(pk=str(oai_set_id))
+        except mongoengine_errors.DoesNotExist as e:
+            raise exceptions.DoesNotExist(e.message)
+        except Exception as e:
+            raise exceptions.ModelError(e.message)
 
     @staticmethod
     def get_by_set_spec(set_spec):
+        """ Get an OaiSet by its set_spec.
+
+        Args:
+            set_spec: OaiSet set_spec.
+
+        Returns: The OaiSet instance.
+
+        Raises:
+            DoesNotExist: The set doesn't exist
+            ModelError: Internal error during the process
+
         """
-        Get an OaiSet by its setSpec
-        :param set_spec:
-        :return:
-        """
-        return OaiSet.objects().get(setSpec=set_spec)
+        try:
+            return OaiSet.objects().get(set_spec=set_spec)
+        except mongoengine_errors.DoesNotExist as e:
+            raise exceptions.DoesNotExist(e.message)
+        except Exception as e:
+            raise exceptions.ModelError(e.message)
 
     @staticmethod
     def get_all():
-        """
-        Return all OaiSets
-        :return:
+        """ Return all OaiSet
+
+        Returns:
+            List of OaiSet
+
         """
         return OaiSet.objects().all()
 
     @staticmethod
     def get_all_by_list_ids(list_oai_set_ids):
-        """
-        Get all OaiSet by a list of ids
-        :param list_oai_set_ids:
-        :return:
+        """ Return all OaiSet by a list of ids.
+
+        Returns:
+            List of OaiSet
+
         """
         return OaiSet.objects(pk__in=list_oai_set_ids).all()
