@@ -7,27 +7,27 @@ from core_main_app.commons import exceptions
 
 
 def get_by_id(oai_metadata_format_id):
+    """ Get an OaiMetadataFormat by its id.
+
+    Args:
+        oai_metadata_format_id: OaiMetadataFormat id.
+
+    Returns: The OaiMetadataFormat instance.
+
     """
-    Get an OaiMetadataFormat by its id
-    :param oai_metadata_format_id:
-    :return:
-    """
-    try:
-        return OaiMetadataFormat.get_by_id(oai_metadata_format_id)
-    except:
-        raise exceptions.ApiError('No OaiMetadataFormat could be found with the given id')
+    return OaiMetadataFormat.get_by_id(oai_metadata_format_id)
 
 
 def get_by_metadata_prefix(metadata_prefix):
+    """ Get an OaiMetadataFormat by its metadata prefix.
+
+    Args:
+        metadata_prefix: OaiMetadataFormat metadata prefix.
+
+    Returns: The OaiMetadataFormat instance.
+
     """
-    Get an OaiMetadataFormat by its metadata prefix
-    :param metadata_prefix:
-    :return:
-    """
-    try:
-        return OaiMetadataFormat.get_by_metadata_prefix(metadata_prefix=metadata_prefix)
-    except:
-        raise exceptions.ApiError('No OaiMetadataFormat could be found with the given metadata prefix')
+    return OaiMetadataFormat.get_by_metadata_prefix(metadata_prefix=metadata_prefix)
 
 
 def get_all():
