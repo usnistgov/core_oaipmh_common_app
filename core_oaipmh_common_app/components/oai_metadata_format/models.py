@@ -11,7 +11,7 @@ class OaiMetadataFormat(Document):
     """Represents a metadata format for Oai-Pmh"""
     metadata_prefix = fields.StringField(unique=True)
     schema = fields.StringField()
-    xml_schema = fields.StringField()
+    xml_schema = fields.StringField(blank=True)
     metadata_namespace = fields.StringField()
 
     meta = {'allow_inheritance': True}
