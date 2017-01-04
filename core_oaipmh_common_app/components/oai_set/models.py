@@ -10,7 +10,7 @@ from core_main_app.commons import exceptions
 class OaiSet(Document):
     """Represents a set for Oai-Pmh"""
     set_spec = fields.StringField(unique=True)
-    set_name = fields.StringField(unique=True)
+    set_name = fields.StringField()
 
     meta = {'allow_inheritance': True}
 
