@@ -1,2 +1,1 @@
-core_main_app==1.0.0-alpha4
 iso8601==0.1.11
