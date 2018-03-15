@@ -1,4 +1,5 @@
-core_oaipmh_common_app
+======================
+Core Oaipmh Common App
 ======================
 
 Base OAI-PMH sharing functions for the curator core project.
