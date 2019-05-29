@@ -1,5 +1,6 @@
 """ OAI-PMH Messages
 """
+from builtins import object
 
 
 class OaiPmhMessage(object):

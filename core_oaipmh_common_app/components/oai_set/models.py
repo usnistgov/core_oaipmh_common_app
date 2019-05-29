@@ -2,8 +2,11 @@
 OaiSet model
 """
 
+from builtins import str
+
 from django_mongoengine import fields, Document
 from mongoengine import errors as mongoengine_errors
+
 from core_main_app.commons import exceptions
 
 
