@@ -57,9 +57,9 @@ class OaiMetadataFormat(Document):
         try:
             return OaiMetadataFormat.objects().get(metadata_prefix=metadata_prefix)
         except mongoengine_errors.DoesNotExist as e:
-            raise exceptions.DoesNotExist(e.message)
+            raise exceptions.DoesNotExist(str(e))
         except Exception as e:
-            raise exceptions.ModelError(e.message)
+            raise exceptions.ModelError(str(e))
 
     @staticmethod
     def get_all():

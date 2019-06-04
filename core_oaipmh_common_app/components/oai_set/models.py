@@ -34,9 +34,9 @@ class OaiSet(Document):
         try:
             return OaiSet.objects().get(pk=str(oai_set_id))
         except mongoengine_errors.DoesNotExist as e:
-            raise exceptions.DoesNotExist(e.message)
+            raise exceptions.DoesNotExist(str(e))
         except Exception as e:
-            raise exceptions.ModelError(e.message)
+            raise exceptions.ModelError(str(e))
 
     @staticmethod
     def get_by_set_spec(set_spec):
@@ -55,9 +55,9 @@ class OaiSet(Document):
         try:
             return OaiSet.objects().get(set_spec=set_spec)
         except mongoengine_errors.DoesNotExist as e:
-            raise exceptions.DoesNotExist(e.message)
+            raise exceptions.DoesNotExist(str(e))
         except Exception as e:
-            raise exceptions.ModelError(e.message)
+            raise exceptions.ModelError(str(e))
 
     @staticmethod
     def get_all():
