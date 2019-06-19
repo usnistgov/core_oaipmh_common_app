@@ -2,9 +2,10 @@
     Iso8601 operation test class
 """
 
-from unittest import TestCase
-from core_oaipmh_common_app.utils import UTCdatetime
 import datetime
+from unittest import TestCase
+
+from core_oaipmh_common_app.utils import UTCdatetime
 
 
 class TestDatetimeToUTCDatetimeIso8601(TestCase):
