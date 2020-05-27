@@ -11,10 +11,11 @@ from core_main_app.commons import exceptions
 
 class OaiSet(Document):
     """Represents a set for Oai-Pmh"""
+
     set_spec = fields.StringField()
     set_name = fields.StringField()
 
-    meta = {'allow_inheritance': True}
+    meta = {"allow_inheritance": True}
 
     @staticmethod
     def get_by_id(oai_set_id):

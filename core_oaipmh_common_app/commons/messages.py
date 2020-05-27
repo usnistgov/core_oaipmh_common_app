@@ -5,8 +5,9 @@
 class OaiPmhMessage(object):
     """ Const values
     """
-    label = 'message'
-    errors = 'errors'
+
+    label = "message"
+    errors = "errors"
 
     @staticmethod
     def get_message_labelled(message):

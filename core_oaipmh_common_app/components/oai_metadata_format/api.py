@@ -2,7 +2,9 @@
 OaiMetadataFormat API
 """
 
-from core_oaipmh_common_app.components.oai_metadata_format.models import OaiMetadataFormat
+from core_oaipmh_common_app.components.oai_metadata_format.models import (
+    OaiMetadataFormat,
+)
 
 
 def get_by_id(oai_metadata_format_id):

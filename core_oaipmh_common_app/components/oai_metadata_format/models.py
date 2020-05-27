@@ -11,12 +11,13 @@ from core_main_app.commons import exceptions
 
 class OaiMetadataFormat(Document):
     """Represents a metadata format for Oai-Pmh"""
+
     metadata_prefix = fields.StringField()
     schema = fields.StringField()
     xml_schema = fields.StringField(blank=True)
     metadata_namespace = fields.StringField()
 
-    meta = {'allow_inheritance': True}
+    meta = {"allow_inheritance": True}
 
     @staticmethod
     def get_by_id(oai_metadata_format_id):

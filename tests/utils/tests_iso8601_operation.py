@@ -38,4 +38,3 @@ class TestUTCDatetimeIso8601ToDatetime(TestCase):
         # Act # Assert
         with self.assertRaises(Exception):
             UTCdatetime.utc_datetime_iso8601_to_datetime(date_to_convert)
-
