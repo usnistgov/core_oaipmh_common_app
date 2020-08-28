@@ -8,8 +8,7 @@ from core_oaipmh_common_app.commons.messages import OaiPmhMessage
 
 
 class OAIAPIException(Exception):
-    """ OAIAPIException.
-    """
+    """OAIAPIException."""
 
     def __init__(self, message, status_code):
         self.message = message
@@ -23,8 +22,7 @@ class OAIAPIException(Exception):
 
 
 class OAIAPILabelledException(OAIAPIException):
-    """ Labelled OAIAPIException.
-    """
+    """Labelled OAIAPIException."""
 
     def response(self):
         return Response(
@@ -33,8 +31,7 @@ class OAIAPILabelledException(OAIAPIException):
 
 
 class OAIAPISerializeLabelledException(OAIAPIException):
-    """ Labelled OAIAPIException used by serialized error.
-    """
+    """Labelled OAIAPIException used by serialized error."""
 
     def __init__(
         self,
@@ -55,8 +52,7 @@ class OAIAPISerializeLabelledException(OAIAPIException):
 
 
 class OAIAPINotUniqueError(OAIAPIException):
-    """ OAIAPINotUniqueError.
-    """
+    """OAIAPINotUniqueError."""
 
     def __init__(self, message, status_code=status.HTTP_409_CONFLICT):
         super(OAIAPINotUniqueError, self).__init__(message, status_code=status_code)

@@ -21,7 +21,7 @@ class OaiMetadataFormat(Document):
 
     @staticmethod
     def get_by_id(oai_metadata_format_id):
-        """ Get an OaiMetadataFormat by its id.
+        """Get an OaiMetadataFormat by its id.
 
         Args:
             oai_metadata_format_id: OaiMetadataFormat id.
@@ -42,7 +42,7 @@ class OaiMetadataFormat(Document):
 
     @staticmethod
     def get_by_metadata_prefix(metadata_prefix):
-        """ Get an OaiMetadataFormat by its metadata prefix.
+        """Get an OaiMetadataFormat by its metadata prefix.
 
         Args:
             metadata_prefix: OaiMetadataFormat metadata prefix.
@@ -63,7 +63,7 @@ class OaiMetadataFormat(Document):
 
     @staticmethod
     def get_all():
-        """ Return all OaiMetadataFormat
+        """Return all OaiMetadataFormat
 
         Returns:
             List of OaiMetadataFormat.
@@ -73,7 +73,7 @@ class OaiMetadataFormat(Document):
 
     @staticmethod
     def get_all_by_list_ids(list_oai_metadata_format_ids):
-        """ Get all OaiMetadataFormat by a list of ids.
+        """Get all OaiMetadataFormat by a list of ids.
 
         Args:
             list_oai_metadata_format_ids:  List of ids.

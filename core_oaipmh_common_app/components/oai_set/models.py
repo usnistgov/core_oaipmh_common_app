@@ -19,7 +19,7 @@ class OaiSet(Document):
 
     @staticmethod
     def get_by_id(oai_set_id):
-        """ Get an OaiSet by its id.
+        """Get an OaiSet by its id.
 
         Args:
             oai_set_id: OaiSet id.
@@ -40,7 +40,7 @@ class OaiSet(Document):
 
     @staticmethod
     def get_by_set_spec(set_spec):
-        """ Get an OaiSet by its set_spec.
+        """Get an OaiSet by its set_spec.
 
         Args:
             set_spec: OaiSet set_spec.
@@ -61,7 +61,7 @@ class OaiSet(Document):
 
     @staticmethod
     def get_all():
-        """ Return all OaiSet
+        """Return all OaiSet
 
         Returns:
             List of OaiSet
@@ -71,7 +71,7 @@ class OaiSet(Document):
 
     @staticmethod
     def get_all_by_list_ids(list_oai_set_ids):
-        """ Return all OaiSet by a list of ids.
+        """Return all OaiSet by a list of ids.
 
         Returns:
             List of OaiSet

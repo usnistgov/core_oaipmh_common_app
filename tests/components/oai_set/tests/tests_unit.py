@@ -124,7 +124,7 @@ class TestOaiSetGetAllByListIds(TestCase):
 
 
 def _create_mock_oai_set():
-    """ Mock an OaiSet.
+    """Mock an OaiSet.
 
     Returns:
         OaiSet mock.

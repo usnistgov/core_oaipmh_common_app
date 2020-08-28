@@ -3,15 +3,14 @@
 
 
 class OaiPmhMessage(object):
-    """ Const values
-    """
+    """Const values"""
 
     label = "message"
     errors = "errors"
 
     @staticmethod
     def get_message_labelled(message):
-        """ Get the given message labelled.
+        """Get the given message labelled.
 
         Args:
             message: Message to label.
@@ -24,7 +23,7 @@ class OaiPmhMessage(object):
 
     @staticmethod
     def get_message_serialize_labelled(message, errors=None):
-        """ Get the given message labelled. Used by a serialized error.
+        """Get the given message labelled. Used by a serialized error.
 
         Args:
             message: Message to label.

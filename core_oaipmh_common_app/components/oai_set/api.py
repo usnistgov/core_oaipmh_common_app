@@ -6,19 +6,19 @@ from core_oaipmh_common_app.components.oai_set.models import OaiSet
 
 
 def get_by_id(oai_set_id):
-    """ Get an OaiSet by its id.
+    """Get an OaiSet by its id.
 
-   Args:
-       oai_set_id: OaiSet id.
+    Args:
+        oai_set_id: OaiSet id.
 
-   Returns: The OaiSet instance.
+    Returns: The OaiSet instance.
 
-   """
+    """
     return OaiSet.get_by_id(oai_set_id)
 
 
 def get_by_set_spec(set_spec):
-    """ Get an OaiSet by its set_spec.
+    """Get an OaiSet by its set_spec.
 
     Args:
         set_spec: OaiSet set_spec.
@@ -30,7 +30,7 @@ def get_by_set_spec(set_spec):
 
 
 def get_all():
-    """ Return all OaiSet
+    """Return all OaiSet
 
     Returns:
         List of OaiSet
@@ -40,7 +40,7 @@ def get_all():
 
 
 def get_all_by_list_ids(list_oai_set_ids):
-    """ Return all OaiSet by a list of ids.
+    """Return all OaiSet by a list of ids.
 
     Returns:
         List of OaiSet

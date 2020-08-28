@@ -8,7 +8,7 @@ from core_oaipmh_common_app.components.oai_metadata_format.models import (
 
 
 def get_by_id(oai_metadata_format_id):
-    """ Get an OaiMetadataFormat by its id.
+    """Get an OaiMetadataFormat by its id.
 
     Args:
         oai_metadata_format_id: OaiMetadataFormat id.
@@ -20,7 +20,7 @@ def get_by_id(oai_metadata_format_id):
 
 
 def get_by_metadata_prefix(metadata_prefix):
-    """ Get an OaiMetadataFormat by its metadata prefix.
+    """Get an OaiMetadataFormat by its metadata prefix.
 
     Args:
         metadata_prefix: OaiMetadataFormat metadata prefix.

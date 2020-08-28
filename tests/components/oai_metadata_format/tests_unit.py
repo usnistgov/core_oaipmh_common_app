@@ -140,7 +140,7 @@ class TestOaiMetadataFormatGetAllByListIds(TestCase):
 
 
 def _create_mock_oai_metadata_format():
-    """ Mock an OaiMetadataFormat.
+    """Mock an OaiMetadataFormat.
 
     Returns:
         OaiMetadataFormat mock.

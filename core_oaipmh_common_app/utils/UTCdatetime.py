@@ -2,14 +2,14 @@ import iso8601
 
 
 def datetime_to_utc_datetime_iso8601(datetime, day_granularity=False):
-    """ Convert a datetime into its iso8601 UTC date.
+    """Convert a datetime into its iso8601 UTC date.
 
-        Parameters:
-            datetime: Datetime to convert.
-            day_granularity: Apply the day granularity
+    Parameters:
+        datetime: Datetime to convert.
+        day_granularity: Apply the day granularity
 
-        Returns:
-            Converted date (string).
+    Returns:
+        Converted date (string).
 
     """
     # ignore microseconds
@@ -21,13 +21,13 @@ def datetime_to_utc_datetime_iso8601(datetime, day_granularity=False):
 
 
 def utc_datetime_iso8601_to_datetime(utc_datetime):
-    """ Convert an iso8601 UTC date into datetime.
+    """Convert an iso8601 UTC date into datetime.
 
-        Parameters:
-            utc_datetime: iso8601 UTC date to convert.
+    Parameters:
+        utc_datetime: iso8601 UTC date to convert.
 
-        Returns:
-            Converted date (Datetime).
+    Returns:
+        Converted date (Datetime).
 
     """
     return iso8601.parse_date(utc_datetime).replace(tzinfo=None)
