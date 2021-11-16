@@ -1,7 +1,6 @@
 from unittest.case import TestCase
 
-from bson.objectid import ObjectId
-from mock.mock import Mock, patch
+from unittest.mock import Mock, patch
 
 import core_oaipmh_common_app.components.oai_metadata_format.api as metadata_format_api
 from core_main_app.commons import exceptions
@@ -29,7 +28,7 @@ class TestOaiMetadataFormatGetById(TestCase):
         self, mock_get_by_id
     ):
         # Arrange
-        mock_absent_id = ObjectId()
+        mock_absent_id = 1
 
         mock_get_by_id.side_effect = exceptions.DoesNotExist("Error")
 
@@ -42,7 +41,7 @@ class TestOaiMetadataFormatGetById(TestCase):
         self, mock_get_by_id
     ):
         # Arrange
-        mock_absent_id = ObjectId()
+        mock_absent_id = 1
 
         mock_get_by_id.side_effect = exceptions.ModelError("Error")
 
@@ -125,7 +124,7 @@ class TestOaiMetadataFormatGetAllByListIds(TestCase):
         # Arrange
         mock_oai_metadata_format1 = _create_mock_oai_metadata_format()
         mock_oai_metadata_format2 = _create_mock_oai_metadata_format()
-        list_ids = [ObjectId(), ObjectId()]
+        list_ids = [1, 2]
 
         mock_get_all.return_value = [
             mock_oai_metadata_format1,
@@ -147,7 +146,7 @@ def _create_mock_oai_metadata_format():
 
     """
     mock_oai_metadata_format = Mock(spec=OaiMetadataFormat)
-    mock_oai_metadata_format.id = ObjectId()
+    mock_oai_metadata_format.id = 1
     mock_oai_metadata_format.metadata_prefix = "oai_test"
     mock_oai_metadata_format.schema = "http://addressToMySchema/schema.xsd"
     mock_oai_metadata_format.xml_schema = "<root><test><test></root>"

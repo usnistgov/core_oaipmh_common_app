@@ -1,23 +1,19 @@
 """
 OaiMetadataFormat model
 """
-
-
-from django_mongoengine import fields, Document
-from mongoengine import errors as mongoengine_errors
+from django.core.exceptions import ObjectDoesNotExist
+from django.db import models
 
 from core_main_app.commons import exceptions
 
 
-class OaiMetadataFormat(Document):
+class OaiMetadataFormat(models.Model):
     """Represents a metadata format for Oai-Pmh"""
 
-    metadata_prefix = fields.StringField()
-    schema = fields.StringField()
-    xml_schema = fields.StringField(blank=True)
-    metadata_namespace = fields.StringField()
-
-    meta = {"allow_inheritance": True}
+    metadata_prefix = models.CharField(blank=False, max_length=200)
+    schema = models.CharField(blank=False, max_length=200)
+    xml_schema = models.TextField(blank=True)
+    metadata_namespace = models.CharField(blank=False, max_length=200)
 
     @staticmethod
     def get_by_id(oai_metadata_format_id):
@@ -34,8 +30,8 @@ class OaiMetadataFormat(Document):
 
         """
         try:
-            return OaiMetadataFormat.objects().get(pk=str(oai_metadata_format_id))
-        except mongoengine_errors.DoesNotExist as e:
+            return OaiMetadataFormat.objects.get(pk=str(oai_metadata_format_id))
+        except ObjectDoesNotExist as e:
             raise exceptions.DoesNotExist(str(e))
         except Exception as e:
             raise exceptions.ModelError(str(e))
@@ -55,8 +51,8 @@ class OaiMetadataFormat(Document):
 
         """
         try:
-            return OaiMetadataFormat.objects().get(metadata_prefix=metadata_prefix)
-        except mongoengine_errors.DoesNotExist as e:
+            return OaiMetadataFormat.objects.get(metadata_prefix=metadata_prefix)
+        except ObjectDoesNotExist as e:
             raise exceptions.DoesNotExist(str(e))
         except Exception as e:
             raise exceptions.ModelError(str(e))
@@ -69,7 +65,7 @@ class OaiMetadataFormat(Document):
             List of OaiMetadataFormat.
 
         """
-        return OaiMetadataFormat.objects().all()
+        return OaiMetadataFormat.objects.all()
 
     @staticmethod
     def get_all_by_list_ids(list_oai_metadata_format_ids):
@@ -82,4 +78,6 @@ class OaiMetadataFormat(Document):
             List of OaiMetadataFormat.
 
         """
-        return OaiMetadataFormat.objects(pk__in=list_oai_metadata_format_ids).all()
+        return OaiMetadataFormat.objects.filter(
+            pk__in=list_oai_metadata_format_ids
+        ).all()

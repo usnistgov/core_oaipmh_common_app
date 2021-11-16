@@ -1,6 +1,3 @@
 Django
-django-mongoengine
 djangorestframework
 iso8601==0.1.13
-mock
-mongoengine

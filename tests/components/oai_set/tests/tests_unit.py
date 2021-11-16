@@ -1,7 +1,6 @@
 from unittest.case import TestCase
 
-from bson.objectid import ObjectId
-from mock.mock import Mock, patch
+from unittest.mock import Mock, patch
 
 import core_oaipmh_common_app.components.oai_set.api as set_api
 from core_main_app.commons import exceptions
@@ -27,7 +26,7 @@ class TestOaiSetGetById(TestCase):
         self, mock_get_by_id
     ):
         # Arrange
-        mock_absent_id = ObjectId()
+        mock_absent_id = 1
 
         mock_get_by_id.side_effect = exceptions.DoesNotExist("Error")
 
@@ -38,7 +37,7 @@ class TestOaiSetGetById(TestCase):
     @patch.object(OaiSet, "get_by_id")
     def test_oai_set_get_by_id_raises_exception_if_internal_error(self, mock_get_by_id):
         # Arrange
-        mock_absent_id = ObjectId()
+        mock_absent_id = 1
 
         mock_get_by_id.side_effect = exceptions.ModelError("Error")
 
@@ -112,7 +111,7 @@ class TestOaiSetGetAllByListIds(TestCase):
         # Arrange
         mock_oai_set1 = _create_mock_oai_set()
         mock_oai_set2 = _create_mock_oai_set()
-        list_ids = [ObjectId(), ObjectId()]
+        list_ids = [1, 2]
 
         mock_get_all.return_value = [mock_oai_set1, mock_oai_set2]
 
@@ -133,6 +132,6 @@ def _create_mock_oai_set():
     mock_oai_set = Mock(spec=OaiSet)
     mock_oai_set.set_spec = "oai_test"
     mock_oai_set.set_name = "test"
-    mock_oai_set.id = ObjectId()
+    mock_oai_set.id = 1
 
     return mock_oai_set
