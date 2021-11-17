@@ -15,6 +15,7 @@ class OaiSet(models.Model):
 
     class Meta:
         abstract = True
+        unique_together = ("set_spec", "set_name")
 
     @staticmethod
     def get_by_id(oai_set_id):
