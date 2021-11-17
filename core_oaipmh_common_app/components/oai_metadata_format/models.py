@@ -2,7 +2,7 @@
 OaiMetadataFormat model
 """
 from django.core.exceptions import ObjectDoesNotExist
-from django.db import models
+from django.db import models, IntegrityError
 
 from core_main_app.commons import exceptions
 
@@ -81,3 +81,16 @@ class OaiMetadataFormat(models.Model):
         return OaiMetadataFormat.objects.filter(
             pk__in=list_oai_metadata_format_ids
         ).all()
+
+    def save_object(self):
+        """Custom save
+
+        Returns:
+
+        """
+        try:
+            return self.save()
+        except IntegrityError as e:
+            raise exceptions.NotUniqueError(str(e))
+        except Exception as ex:
+            raise exceptions.ModelError(str(ex))
