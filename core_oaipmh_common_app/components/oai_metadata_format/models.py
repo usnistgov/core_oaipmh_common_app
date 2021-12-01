@@ -15,6 +15,9 @@ class OaiMetadataFormat(models.Model):
     xml_schema = models.TextField(blank=True)
     metadata_namespace = models.CharField(blank=False, max_length=200)
 
+    class Meta:
+        abstract = True
+
     @staticmethod
     def get_by_id(oai_metadata_format_id):
         """Get an OaiMetadataFormat by its id.
