@@ -13,7 +13,7 @@ def datetime_to_utc_datetime_iso8601(datetime, day_granularity=False):
 
     """
     # ignore microseconds
-    datetime = datetime.replace(microsecond=0)
+    datetime = datetime.replace(microsecond=0, tzinfo=None)
     result = datetime.isoformat() + "Z"
     if day_granularity:
         result = result[:-10]
