@@ -14,6 +14,8 @@ class OaiSet(models.Model):
     set_name = models.CharField(blank=False, max_length=200)
 
     class Meta:
+        """Meta"""
+
         abstract = True
         unique_together = ("set_spec", "set_name")
 
@@ -33,10 +35,10 @@ class OaiSet(models.Model):
         """
         try:
             return OaiSet.objects.get(pk=str(oai_set_id))
-        except ObjectDoesNotExist as e:
-            raise exceptions.DoesNotExist(str(e))
-        except Exception as e:
-            raise exceptions.ModelError(str(e))
+        except ObjectDoesNotExist as exception:
+            raise exceptions.DoesNotExist(str(exception))
+        except Exception as exception:
+            raise exceptions.ModelError(str(exception))
 
     @staticmethod
     def get_by_set_spec(set_spec):
@@ -54,10 +56,10 @@ class OaiSet(models.Model):
         """
         try:
             return OaiSet.objects.get(set_spec=set_spec)
-        except ObjectDoesNotExist as e:
-            raise exceptions.DoesNotExist(str(e))
-        except Exception as e:
-            raise exceptions.ModelError(str(e))
+        except ObjectDoesNotExist as exception:
+            raise exceptions.DoesNotExist(str(exception))
+        except Exception as exception:
+            raise exceptions.ModelError(str(exception))
 
     @staticmethod
     def get_all():

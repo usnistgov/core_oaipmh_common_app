@@ -2,7 +2,7 @@
 """
 
 
-class OaiPmhMessage(object):
+class OaiPmhMessage:
     """Const values"""
 
     label = "message"

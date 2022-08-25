@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+""" run tests
+"""
+
 import os
 import sys
 

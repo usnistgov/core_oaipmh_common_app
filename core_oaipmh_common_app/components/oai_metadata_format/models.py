@@ -16,6 +16,8 @@ class OaiMetadataFormat(models.Model):
     metadata_namespace = models.CharField(blank=False, max_length=200)
 
     class Meta:
+        """Meta"""
+
         abstract = True
 
     @staticmethod
@@ -34,10 +36,10 @@ class OaiMetadataFormat(models.Model):
         """
         try:
             return OaiMetadataFormat.objects.get(pk=str(oai_metadata_format_id))
-        except ObjectDoesNotExist as e:
-            raise exceptions.DoesNotExist(str(e))
-        except Exception as e:
-            raise exceptions.ModelError(str(e))
+        except ObjectDoesNotExist as exception:
+            raise exceptions.DoesNotExist(str(exception))
+        except Exception as exception:
+            raise exceptions.ModelError(str(exception))
 
     @staticmethod
     def get_by_metadata_prefix(metadata_prefix):
@@ -55,10 +57,10 @@ class OaiMetadataFormat(models.Model):
         """
         try:
             return OaiMetadataFormat.objects.get(metadata_prefix=metadata_prefix)
-        except ObjectDoesNotExist as e:
-            raise exceptions.DoesNotExist(str(e))
-        except Exception as e:
-            raise exceptions.ModelError(str(e))
+        except ObjectDoesNotExist as exception:
+            raise exceptions.DoesNotExist(str(exception))
+        except Exception as exception:
+            raise exceptions.ModelError(str(exception))
 
     @staticmethod
     def get_all():
@@ -93,7 +95,7 @@ class OaiMetadataFormat(models.Model):
         """
         try:
             return self.save()
-        except IntegrityError as e:
-            raise exceptions.NotUniqueError(str(e))
+        except IntegrityError as exception:
+            raise exceptions.NotUniqueError(str(exception))
         except Exception as ex:
             raise exceptions.ModelError(str(ex))
