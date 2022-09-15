@@ -9,7 +9,10 @@ from core_oaipmh_common_app.utils import UTCdatetime
 
 
 class TestDatetimeToUTCDatetimeIso8601(TestCase):
+    """Test Date time To UTC Date time Iso 8601"""
+
     def test_valid_conversion(self):
+        """test_valid_conversion"""
         # Arrange
         date_to_convert = datetime.datetime(2016, 11, 18, 8, 30)
 
@@ -17,11 +20,14 @@ class TestDatetimeToUTCDatetimeIso8601(TestCase):
         result = UTCdatetime.datetime_to_utc_datetime_iso8601(date_to_convert)
 
         # Assert
-        self.assertEquals(result, "2016-11-18T08:30:00Z")
+        self.assertEqual(result, "2016-11-18T08:30:00Z")
 
 
 class TestUTCDatetimeIso8601ToDatetime(TestCase):
+    """Test UTC Date time Iso 8601 To Datetime"""
+
     def test_valid_conversion(self):
+        """test_valid_conversion"""
         # Arrange
         date_to_convert = "2016-11-18T08:30:00Z"
 
@@ -29,9 +35,10 @@ class TestUTCDatetimeIso8601ToDatetime(TestCase):
         result = UTCdatetime.utc_datetime_iso8601_to_datetime(date_to_convert)
 
         # Assert
-        self.assertEquals(result, datetime.datetime(2016, 11, 18, 8, 30))
+        self.assertEqual(result, datetime.datetime(2016, 11, 18, 8, 30))
 
     def test_invalid_conversion(self):
+        """test_invalid_conversion"""
         # Arrange
         date_to_convert = "20166-11-18T08:30:00Z"
 

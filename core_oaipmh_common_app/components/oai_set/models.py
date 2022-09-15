@@ -1,21 +1,23 @@
 """
 OaiSet model
 """
-
-
-from django_mongoengine import fields, Document
-from mongoengine import errors as mongoengine_errors
+from django.core.exceptions import ObjectDoesNotExist
+from django.db import models
 
 from core_main_app.commons import exceptions
 
 
-class OaiSet(Document):
+class OaiSet(models.Model):
     """Represents a set for Oai-Pmh"""
 
-    set_spec = fields.StringField(unique=True)
-    set_name = fields.StringField()
+    set_spec = models.CharField(blank=False, max_length=200)
+    set_name = models.CharField(blank=False, max_length=200)
 
-    meta = {"abstract": True}
+    class Meta:
+        """Meta"""
+
+        abstract = True
+        unique_together = ("set_spec", "set_name")
 
     @staticmethod
     def get_by_id(oai_set_id):
@@ -32,11 +34,11 @@ class OaiSet(Document):
 
         """
         try:
-            return OaiSet.objects().get(pk=str(oai_set_id))
-        except mongoengine_errors.DoesNotExist as e:
-            raise exceptions.DoesNotExist(str(e))
-        except Exception as e:
-            raise exceptions.ModelError(str(e))
+            return OaiSet.objects.get(pk=str(oai_set_id))
+        except ObjectDoesNotExist as exception:
+            raise exceptions.DoesNotExist(str(exception))
+        except Exception as exception:
+            raise exceptions.ModelError(str(exception))
 
     @staticmethod
     def get_by_set_spec(set_spec):
@@ -53,11 +55,11 @@ class OaiSet(Document):
 
         """
         try:
-            return OaiSet.objects().get(set_spec=set_spec)
-        except mongoengine_errors.DoesNotExist as e:
-            raise exceptions.DoesNotExist(str(e))
-        except Exception as e:
-            raise exceptions.ModelError(str(e))
+            return OaiSet.objects.get(set_spec=set_spec)
+        except ObjectDoesNotExist as exception:
+            raise exceptions.DoesNotExist(str(exception))
+        except Exception as exception:
+            raise exceptions.ModelError(str(exception))
 
     @staticmethod
     def get_all():
@@ -67,7 +69,7 @@ class OaiSet(Document):
             List of OaiSet
 
         """
-        return OaiSet.objects().all()
+        return OaiSet.objects.all()
 
     @staticmethod
     def get_all_by_list_ids(list_oai_set_ids):
@@ -77,4 +79,4 @@ class OaiSet(Document):
             List of OaiSet
 
         """
-        return OaiSet.objects(pk__in=list_oai_set_ids).all()
+        return OaiSet.objects.filter(pk__in=list_oai_set_ids).all()

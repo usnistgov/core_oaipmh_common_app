@@ -18,6 +18,11 @@ class OAIAPIException(Exception):
         return repr(self.message)
 
     def response(self):
+        """response
+
+        Returns:
+
+        """
         return Response(self.message, status=self.status_code)
 
 
@@ -39,7 +44,7 @@ class OAIAPISerializeLabelledException(OAIAPIException):
         errors=None,
         message="Error while attempting to retrieve params values. Please check your entries.",
     ):
-        super(OAIAPISerializeLabelledException, self).__init__(message, status_code)
+        super().__init__(message, status_code)
         if errors is None:
             errors = []
         self.errors = errors
@@ -55,4 +60,4 @@ class OAIAPINotUniqueError(OAIAPIException):
     """OAIAPINotUniqueError."""
 
     def __init__(self, message, status_code=status.HTTP_409_CONFLICT):
-        super(OAIAPINotUniqueError, self).__init__(message, status_code=status_code)
+        super().__init__(message, status_code=status_code)
