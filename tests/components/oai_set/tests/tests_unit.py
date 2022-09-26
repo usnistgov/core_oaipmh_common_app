@@ -44,7 +44,9 @@ class TestOaiSetGetById(TestCase):
             set_api.get_by_id(mock_absent_id)
 
     @patch.object(OaiSet, "get_by_id")
-    def test_oai_set_get_by_id_raises_exception_if_internal_error(self, mock_get_by_id):
+    def test_oai_set_get_by_id_raises_exception_if_internal_error(
+        self, mock_get_by_id
+    ):
         """test_oai_set_get_by_id_raises_exception_if_internal_error"""
 
         # Arrange

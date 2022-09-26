@@ -93,7 +93,9 @@ class TestOaiMetadataFormatGetByMetadataPrefix(TestCase):
 
         # Act + Assert
         with self.assertRaises(exceptions.DoesNotExist):
-            metadata_format_api.get_by_metadata_prefix(mock_absent_metadata_prefix)
+            metadata_format_api.get_by_metadata_prefix(
+                mock_absent_metadata_prefix
+            )
 
     @patch.object(OaiMetadataFormat, "get_by_metadata_prefix")
     def test_oai_metadata_format_get_by_metadata_prefix_raises_exception_if_internal_error(
@@ -108,7 +110,9 @@ class TestOaiMetadataFormatGetByMetadataPrefix(TestCase):
 
         # Act + Assert
         with self.assertRaises(exceptions.ModelError):
-            metadata_format_api.get_by_metadata_prefix(mock_absent_metadata_prefix)
+            metadata_format_api.get_by_metadata_prefix(
+                mock_absent_metadata_prefix
+            )
 
 
 class TestOaiMetadataFormatGetAll(TestCase):
@@ -133,7 +137,9 @@ class TestOaiMetadataFormatGetAll(TestCase):
         result = metadata_format_api.get_all()
 
         # Assert
-        self.assertTrue(all(isinstance(item, OaiMetadataFormat) for item in result))
+        self.assertTrue(
+            all(isinstance(item, OaiMetadataFormat) for item in result)
+        )
 
 
 class TestOaiMetadataFormatGetAllByListIds(TestCase):
@@ -159,7 +165,9 @@ class TestOaiMetadataFormatGetAllByListIds(TestCase):
         result = metadata_format_api.get_all_by_list_ids(list_ids)
 
         # Assert
-        self.assertTrue(all(isinstance(item, OaiMetadataFormat) for item in result))
+        self.assertTrue(
+            all(isinstance(item, OaiMetadataFormat) for item in result)
+        )
 
 
 def _create_mock_oai_metadata_format():

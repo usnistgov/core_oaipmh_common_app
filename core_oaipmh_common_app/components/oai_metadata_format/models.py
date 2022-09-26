@@ -35,7 +35,9 @@ class OaiMetadataFormat(models.Model):
 
         """
         try:
-            return OaiMetadataFormat.objects.get(pk=str(oai_metadata_format_id))
+            return OaiMetadataFormat.objects.get(
+                pk=str(oai_metadata_format_id)
+            )
         except ObjectDoesNotExist as exception:
             raise exceptions.DoesNotExist(str(exception))
         except Exception as exception:
@@ -56,7 +58,9 @@ class OaiMetadataFormat(models.Model):
 
         """
         try:
-            return OaiMetadataFormat.objects.get(metadata_prefix=metadata_prefix)
+            return OaiMetadataFormat.objects.get(
+                metadata_prefix=metadata_prefix
+            )
         except ObjectDoesNotExist as exception:
             raise exceptions.DoesNotExist(str(exception))
         except Exception as exception:

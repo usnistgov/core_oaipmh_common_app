@@ -28,7 +28,9 @@ def get_by_metadata_prefix(metadata_prefix):
     Returns: The OaiMetadataFormat instance.
 
     """
-    return OaiMetadataFormat.get_by_metadata_prefix(metadata_prefix=metadata_prefix)
+    return OaiMetadataFormat.get_by_metadata_prefix(
+        metadata_prefix=metadata_prefix
+    )
 
 
 def get_all():

@@ -31,7 +31,8 @@ class OAIAPILabelledException(OAIAPIException):
 
     def response(self):
         return Response(
-            OaiPmhMessage.get_message_labelled(self.message), status=self.status_code
+            OaiPmhMessage.get_message_labelled(self.message),
+            status=self.status_code,
         )
 
 
@@ -51,7 +52,9 @@ class OAIAPISerializeLabelledException(OAIAPIException):
 
     def response(self):
         return Response(
-            OaiPmhMessage.get_message_serialize_labelled(self.message, self.errors),
+            OaiPmhMessage.get_message_serialize_labelled(
+                self.message, self.errors
+            ),
             status=self.status_code,
         )
 
