@@ -37,7 +37,7 @@ chdir(normpath(join(abspath(__file__), pardir)))
 
 setup(
     name="core_oaipmh_common_app",
-    version="2.1.0",
+    version="2.2.0",
     description="Base OAI-PMH functions for the curator core project",
     long_description=long_desc,
     author="NIST IT Lab",
