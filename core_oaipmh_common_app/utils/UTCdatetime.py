@@ -1,5 +1,6 @@
 """ UTC datetime
 """
+import datetime
 
 import iso8601
 
@@ -31,6 +32,7 @@ def utc_datetime_iso8601_to_datetime(utc_datetime):
 
     Returns:
         Converted date (Datetime).
-
     """
-    return iso8601.parse_date(utc_datetime).replace(tzinfo=None)
+    return iso8601.parse_date(utc_datetime).replace(
+        tzinfo=datetime.timezone.utc
+    )

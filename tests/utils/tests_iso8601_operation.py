@@ -35,7 +35,12 @@ class TestUTCDatetimeIso8601ToDatetime(TestCase):
         result = UTCdatetime.utc_datetime_iso8601_to_datetime(date_to_convert)
 
         # Assert
-        self.assertEqual(result, datetime.datetime(2016, 11, 18, 8, 30))
+        self.assertEqual(
+            result,
+            datetime.datetime(2016, 11, 18, 8, 30).replace(
+                tzinfo=datetime.timezone.utc
+            ),
+        )
 
     def test_invalid_conversion(self):
         """test_invalid_conversion"""
