@@ -1,5 +1,4 @@
-""" OAI-PMH Exceptions
-"""
+"""OAI-PMH Exceptions"""
 
 from rest_framework import status
 from rest_framework.response import Response

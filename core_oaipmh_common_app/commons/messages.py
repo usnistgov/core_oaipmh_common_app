@@ -1,5 +1,4 @@
-""" OAI-PMH Messages
-"""
+"""OAI-PMH Messages"""
 
 
 class OaiPmhMessage:
